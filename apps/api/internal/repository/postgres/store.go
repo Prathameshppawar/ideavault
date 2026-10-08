@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
@@ -129,14 +128,6 @@ func nonNilStrings(s []string) []string {
 		return []string{}
 	}
 	return s
-}
-
-func uuidStrings(ids []uuid.UUID) []string {
-	out := make([]string, len(ids))
-	for i, id := range ids {
-		out[i] = id.String()
-	}
-	return out
 }
 
 func clampLimit(limit, def, max int) int {

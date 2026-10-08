@@ -125,11 +125,9 @@ func InterpretQuery(q string) QueryInterpretation {
 			in.Types = keep
 		}
 	}
-	terms := q
+	terms := reFiller.ReplaceAllString(lower, " ")
 	if in.SimilarTo != "" {
 		terms = in.SimilarTo
-	} else {
-		terms = reFiller.ReplaceAllString(lower, " ")
 	}
 	terms = strings.Join(strings.Fields(strings.Trim(terms, "?.!,")), " ")
 	in.Terms = terms

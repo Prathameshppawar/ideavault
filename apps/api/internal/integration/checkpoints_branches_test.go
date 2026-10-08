@@ -123,12 +123,11 @@ func TestCheckpointNumberingSnapshotAndHead(t *testing.T) {
 // seedTimeline builds Main with CP1..CP7 on an idea and returns the checkpoints by number.
 // D1/A1/Q1 exist from CP1; D1 is superseded by D2 after CP4; E1 and I1 are added after CP4.
 type timeline struct {
-	idea            *service.IdeaCreated
-	cps             map[int]*domain.Checkpoint
-	d1, d2, a1, q1  *domain.KnowledgeItem
-	e1, i1, t1, d3  *domain.KnowledgeItem
-	evidenceOfD1    *domain.KnowledgeItem
-	supportsOrigRel uuid.UUID
+	idea           *service.IdeaCreated
+	cps            map[int]*domain.Checkpoint
+	d1, d2, a1, q1 *domain.KnowledgeItem
+	e1, i1, t1, d3 *domain.KnowledgeItem
+	evidenceOfD1   *domain.KnowledgeItem
 }
 
 func seedTimeline(t *testing.T, e *testutil.Env, u *testutil.User, title string) *timeline {

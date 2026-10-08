@@ -2,6 +2,8 @@ module github.com/Prathameshppawar/ideavault/apps/api
 
 go 1.26.0
 
+toolchain go1.26.9
+
 require (
 	github.com/anthropics/anthropic-sdk-go v1.79.1
 	github.com/go-chi/chi/v5 v5.3.2

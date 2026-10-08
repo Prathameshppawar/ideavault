@@ -652,7 +652,7 @@ func continueText(cp, ctx map[string]any) string {
 		if len(items) == 0 {
 			continue
 		}
-		fmt.Fprintf(&b, "**%ss at %s**\n", strings.Title(k), str(c, "label"))
+		fmt.Fprintf(&b, "**%ss at %s**\n", capitalize(k), str(c, "label"))
 		for i, it := range items {
 			if i >= 6 {
 				break
@@ -679,7 +679,7 @@ func ideaText(d map[string]any) string {
 		if len(items) == 0 {
 			continue
 		}
-		fmt.Fprintf(&b, "**%s**\n", strings.Title(k))
+		fmt.Fprintf(&b, "**%s**\n", capitalize(k))
 		for i, it := range items {
 			if i >= 6 {
 				break
@@ -877,4 +877,12 @@ func searchText(d map[string]any) string {
 		b.WriteString("\n")
 	}
 	return b.String()
+}
+
+// capitalize upper-cases the first letter of a single ASCII word ("decision" → "Decision").
+func capitalize(w string) string {
+	if w == "" {
+		return w
+	}
+	return strings.ToUpper(w[:1]) + w[1:]
 }

@@ -103,14 +103,6 @@ func NewSupervisor(svc *service.Service, log *slog.Logger) *Supervisor {
 // Tools returns tool metadata (for docs/UI).
 func (s *Supervisor) Tools() []Tool { return s.order }
 
-func (s *Supervisor) toolDefs() []models.ToolDef {
-	defs := make([]models.ToolDef, 0, len(s.order))
-	for _, t := range s.order {
-		defs = append(defs, models.ToolDef{Name: t.Name, Description: t.Description, Parameters: t.Params})
-	}
-	return defs
-}
-
 func (s *Supervisor) policy(ctx context.Context, userID uuid.UUID) Policy {
 	st, err := s.svc.Store().GetSettings(ctx, userID)
 	if err != nil {

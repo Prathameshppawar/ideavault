@@ -308,11 +308,6 @@ func redact(s string, secrets ...string) string {
 	return s
 }
 
-// joinURL joins a base URL and a path that begins with "/".
-func joinURL(base, path string) string {
-	return strings.TrimRight(base, "/") + path
-}
-
 // ---------------------------------------------------------------------------
 // Server-Sent Events
 
