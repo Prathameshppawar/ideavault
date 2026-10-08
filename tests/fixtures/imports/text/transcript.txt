@@ -1,0 +1,8 @@
+User: I want riders to rate each trip after it ends. What should we ask?
+Assistant: Keep it to three quick questions:
+1. How was the route?
+2. How was the pace?
+3. Would you ride with this crew again?
+
+User: Should ratings be public?
+AI: Show aggregate route ratings publicly, but keep ratings of individual riders private to avoid drama in the community.

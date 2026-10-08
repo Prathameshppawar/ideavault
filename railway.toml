@@ -1,0 +1,13 @@
+# Railway service for the IdeaVault API (deploy from repo root).
+# Add a PostgreSQL service with pgvector (e.g. the "pgvector" template) and optionally Redis,
+# then set DATABASE_URL / REDIS_URL / MASTER_KEY / WEB_ORIGINS / provider keys as service variables.
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "apps/api/Dockerfile"
+watchPatterns = ["apps/api/**", "db/**"]
+
+[deploy]
+healthcheckPath = "/readyz"
+healthcheckTimeout = 60
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

@@ -1,0 +1,17 @@
+# Secret scanning (CI + `make secrets-check`). Default rules, plus an allowlist for the
+# obviously fake credentials that unit tests use to prove redaction and masking work.
+# Only these exact values are allowed; anything else that looks like a key still fails.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic credentials in tests"
+regexTarget = "secret"
+regexes = [
+  '''^sk-test-[A-Za-z0-9_-]*$''',
+  '''^AIzaTEST[A-Za-z0-9_-]*$''',
+  '''^ivt_test[A-Za-z0-9_-]*$''',
+  '''^(x-goog-api-key=)?AIzaSyA1234567890abcdefghijklmnopqrstu$''',
+  '''^(key=)?sk-proj-AbCdEfGhIjKlMnOpQrStUv_123$''',
+  '''^abc123def456$''',
+]

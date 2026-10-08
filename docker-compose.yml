@@ -1,0 +1,59 @@
+# Local infrastructure for IdeaVault.
+# PostgreSQL (with pgvector) is the system of record; Redis is an optional
+# accelerator (cache, rate limits, ephemeral state) and never the source of truth.
+name: ideavault
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ideavault}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ideavault}
+      POSTGRES_DB: ${POSTGRES_DB:-ideavault}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ideavault} -d ${POSTGRES_DB:-ideavault}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "no", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  # Optional: run the API in a container too (`docker compose --profile app up`).
+  api:
+    profiles: ["app"]
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-ideavault}:${POSTGRES_PASSWORD:-ideavault}@postgres:5432/${POSTGRES_DB:-ideavault}?sslmode=disable
+      REDIS_URL: redis://redis:6379/0
+      PORT: "8080"
+    ports:
+      - "${API_PORT:-8080}:8080"
+
+volumes:
+  pgdata:

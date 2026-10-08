@@ -1,0 +1,97 @@
+name: Deploy
+
+# Deploys run only after CI succeeds on main, and only for the app that changed:
+# frontend changes never redeploy the backend and vice versa.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "What to deploy"
+        type: choice
+        options: [both, api, web]
+        default: both
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.diff.outputs.api }}
+      web: ${{ steps.diff.outputs.web }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - id: diff
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            t="${{ inputs.target }}"
+            echo "api=$([ "$t" = both ] || [ "$t" = api ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+            echo "web=$([ "$t" = both ] || [ "$t" = web ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          before="${{ github.event.workflow_run.head_sha }}~1"
+          changed=$(git diff --name-only "$before" HEAD || true)
+          echo "$changed"
+          echo "api=$(echo "$changed" | grep -qE '^(apps/api/|db/)' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "web=$(echo "$changed" | grep -qE '^(apps/web/|packages/contracts/)' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+
+  api:
+    name: Deploy API → Railway
+    needs: plan
+    if: needs.plan.outputs.api == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Check token
+        id: tok
+        run: echo "ok=$([ -n "${{ secrets.RAILWAY_TOKEN }}" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - name: Deploy
+        if: steps.tok.outputs.ok == 'true'
+        run: npx -y @railway/cli@latest up --ci --service "${{ vars.RAILWAY_SERVICE || 'ideavault-api' }}"
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      - name: Skipped (no RAILWAY_TOKEN)
+        if: steps.tok.outputs.ok != 'true'
+        run: echo "::warning::RAILWAY_TOKEN secret not set — skipping API deploy. See docs/DEPLOYMENT.md."
+
+  web:
+    name: Deploy Web → Vercel
+    needs: plan
+    if: needs.plan.outputs.web == 'true'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Check token
+        id: tok
+        run: echo "ok=$([ -n "${{ secrets.VERCEL_TOKEN }}" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - name: Deploy
+        if: steps.tok.outputs.ok == 'true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx -y vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx -y vercel@latest build --prod --token="$VERCEL_TOKEN"
+          npx -y vercel@latest deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+      - name: Skipped (no VERCEL_TOKEN)
+        if: steps.tok.outputs.ok != 'true'
+        run: echo "::warning::VERCEL_TOKEN secret not set — skipping web deploy. See docs/DEPLOYMENT.md."

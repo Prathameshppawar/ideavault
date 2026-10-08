@@ -1,0 +1,173 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    outputs:
+      api: ${{ steps.filter.outputs.api }}
+      web: ${{ steps.filter.outputs.web }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            api:
+              - 'apps/api/**'
+              - 'db/**'
+              - 'tests/fixtures/**'
+              - 'tests/evaluations/**'
+              - '.github/workflows/**'
+            web:
+              - 'apps/web/**'
+              - 'packages/contracts/**'
+              - '.github/workflows/**'
+
+  api:
+    name: API · lint, test, migrations
+    needs: changes
+    if: needs.changes.outputs.api == 'true'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: ideavault
+          POSTGRES_PASSWORD: ideavault
+          POSTGRES_DB: ideavault_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ideavault -d ideavault_test"
+          --health-interval 3s --health-timeout 3s --health-retries 30
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+    env:
+      TEST_DATABASE_URL: postgres://ideavault:ideavault@localhost:5432/ideavault_test?sslmode=disable
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: apps/api/go.mod
+          cache-dependency-path: apps/api/go.sum
+      - name: gofmt
+        run: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - name: go vet
+        run: go vet ./...
+      - name: staticcheck
+        run: go run honnef.co/go/tools/cmd/staticcheck@2025.1.1 ./...
+      - name: Migrations are reversible (up → down → up)
+        run: DATABASE_URL="$TEST_DATABASE_URL" go run ./cmd/migrate verify
+      - name: Unit + integration tests
+        run: go test ./... -count=1 -race -coverprofile=coverage.out
+      - name: OpenAPI contract is up to date
+        run: |
+          go run ./cmd/openapi > /tmp/openapi.json
+          diff -u ../../packages/contracts/openapi.json /tmp/openapi.json
+      - name: govulncheck
+        run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+      - name: Build
+        run: go build ./cmd/...
+
+  web:
+    name: Web · lint, typecheck, test, build
+    needs: changes
+    if: needs.changes.outputs.web == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - name: Generated API types are up to date
+        run: |
+          npm run gen:api
+          git diff --exit-code -- types/api.generated.ts
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+        env:
+          API_ORIGIN: http://localhost:8080
+      - name: npm audit (production deps)
+        run: npm audit --omit=dev --audit-level=high
+
+  e2e:
+    name: End-to-end (Playwright)
+    needs: [changes]
+    if: needs.changes.outputs.api == 'true' || needs.changes.outputs.web == 'true'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: ideavault
+          POSTGRES_PASSWORD: ideavault
+          POSTGRES_DB: ideavault_e2e
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ideavault -d ideavault_e2e"
+          --health-interval 3s --health-timeout 3s --health-retries 30
+    env:
+      E2E_DATABASE_URL: postgres://ideavault:ideavault@localhost:5432/ideavault_e2e?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: apps/api/go.mod
+          cache-dependency-path: apps/api/go.sum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Build API
+        working-directory: apps/api
+        run: go build -o bin/api ./cmd/api
+      - name: Install web deps and browser
+        working-directory: apps/web
+        run: npm ci && npx playwright install --with-deps chromium
+      - name: Run Playwright
+        working-directory: apps/web
+        run: npx playwright test
+        env:
+          CI: "true"
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report
+          retention-days: 7
+
+  security:
+    name: Secrets scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

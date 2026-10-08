@@ -1,0 +1,763 @@
+[
+  {
+    "title": "Biker community trip platform",
+    "create_time": 1767225600.123456,
+    "update_time": 1767225726.123456,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": [
+          "sys-1"
+        ]
+      },
+      "sys-1": {
+        "id": "sys-1",
+        "message": {
+          "id": "sys-1",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "client-created-root",
+        "children": [
+          "uec-1"
+        ]
+      },
+      "uec-1": {
+        "id": "uec-1",
+        "message": {
+          "id": "uec-1",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "user_editable_context",
+            "user_profile": "I am a product designer.",
+            "user_instructions": "Be concise."
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true,
+            "user_context_message_data": {}
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "sys-1",
+        "children": [
+          "u-1"
+        ]
+      },
+      "u-1": {
+        "id": "u-1",
+        "message": {
+          "id": "u-1",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225600.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "I want to build a community platform for bikers where riders create trips, invite friends and plan routes together. What should the MVP include?"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "uec-1",
+        "children": [
+          "a-thoughts-1"
+        ]
+      },
+      "a-thoughts-1": {
+        "id": "a-thoughts-1",
+        "message": {
+          "id": "a-thoughts-1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225602.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "thoughts",
+            "thoughts": [
+              {
+                "summary": "Scoping the MVP",
+                "content": "PRIVATE REASONING SHOULD NOT BE IMPORTED"
+              }
+            ],
+            "source_analysis_msg_id": "x"
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5-thinking"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "u-1",
+        "children": [
+          "a-pre-1"
+        ]
+      },
+      "a-pre-1": {
+        "id": "a-pre-1",
+        "message": {
+          "id": "a-pre-1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225603.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Let me check what existing ride-planning apps offer."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5-thinking",
+            "is_thinking_preamble_message": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-thoughts-1",
+        "children": [
+          "a-tool-1"
+        ]
+      },
+      "a-tool-1": {
+        "id": "a-tool-1",
+        "message": {
+          "id": "a-tool-1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225604.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "{\"search_query\":[{\"q\":\"motorcycle group ride planning app features\"}]}"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5-thinking"
+          },
+          "recipient": "web.run",
+          "channel": null
+        },
+        "parent": "a-pre-1",
+        "children": [
+          "tool-1"
+        ]
+      },
+      "tool-1": {
+        "id": "tool-1",
+        "message": {
+          "id": "tool-1",
+          "author": {
+            "role": "tool",
+            "name": "web.run",
+            "metadata": {}
+          },
+          "create_time": 1767225605.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "TOOL OUTPUT SHOULD NOT BE IMPORTED: search results"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-tool-1",
+        "children": [
+          "a-recap-1"
+        ]
+      },
+      "a-recap-1": {
+        "id": "a-recap-1",
+        "message": {
+          "id": "a-recap-1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225606.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "reasoning_recap",
+            "content": "Thought for 8s"
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5-thinking"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "tool-1",
+        "children": [
+          "a-1"
+        ]
+      },
+      "a-1": {
+        "id": "a-1",
+        "message": {
+          "id": "a-1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225609.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "For an MVP, focus on the trip lifecycle:\n\n1. **Trip creation** with a start point, waypoints and a meeting time. \ue200cite\ue202turn0search0\ue202turn0search3\ue201\n2. **Rider invites and RSVPs** so the organizer knows who is coming. \ue200cite\ue202turn0search7\ue201\n3. **A group chat per trip** for last-minute changes. \ue200cite\ue202turn0search9\ue201\n\nApps like \ue200entity\ue202[\"company\",\"RoadLoop\",\"route planning app\"]\ue201 already cover solo route planning, so your differentiator is the social layer: crews, shared trip history and ride reputations.\n\n\ue200navlist\ue202Related reading\ue202turn0news1\ue201"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5-thinking",
+            "content_references": [
+              {
+                "matched_text": "\ue200cite\ue202turn0search0\ue202turn0search3\ue201",
+                "start_idx": 0,
+                "end_idx": 0,
+                "type": "grouped_webpages",
+                "alt": "([Ride Planner Weekly](https://example.com/ride-planning-features))",
+                "items": [
+                  {
+                    "title": "Ride Planner Weekly",
+                    "url": "https://example.com/ride-planning-features"
+                  }
+                ]
+              },
+              {
+                "matched_text": "\ue200cite\ue202turn0search7\ue201",
+                "start_idx": 0,
+                "end_idx": 0,
+                "type": "grouped_webpages",
+                "alt": null,
+                "items": [
+                  {
+                    "title": "Group Ride Safety Guide",
+                    "url": "https://example.org/group-ride-safety"
+                  }
+                ]
+              },
+              {
+                "matched_text": " ",
+                "start_idx": 0,
+                "end_idx": 0,
+                "type": "sources_footnote",
+                "alt": "",
+                "sources": []
+              }
+            ]
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-recap-1",
+        "children": [
+          "u-2a",
+          "u-2b"
+        ]
+      },
+      "u-2a": {
+        "id": "u-2a",
+        "message": {
+          "id": "u-2a",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225660.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "OLD BRANCH: should I charge riders a subscription?"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-1",
+        "children": [
+          "a-2a"
+        ]
+      },
+      "a-2a": {
+        "id": "a-2a",
+        "message": {
+          "id": "a-2a",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225665.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "OLD BRANCH ANSWER about subscriptions."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "u-2a",
+        "children": []
+      },
+      "u-2b": {
+        "id": "u-2b",
+        "message": {
+          "id": "u-2b",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225720.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "multimodal_text",
+            "parts": [
+              {
+                "content_type": "image_asset_pointer",
+                "asset_pointer": "file-service://file-tripcard01",
+                "size_bytes": 48211,
+                "width": 800,
+                "height": 600,
+                "metadata": null
+              },
+              "Here is a sketch of the trip card. How would you monetize this without annoying riders?"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-1",
+        "children": [
+          "a-code-2"
+        ]
+      },
+      "a-code-2": {
+        "id": "a-code-2",
+        "message": {
+          "id": "a-code-2",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225722.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "code",
+            "text": "print(sum([4.99, 9.99]))",
+            "language": "unknown"
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5"
+          },
+          "recipient": "python",
+          "channel": null
+        },
+        "parent": "u-2b",
+        "children": [
+          "exec-2"
+        ]
+      },
+      "exec-2": {
+        "id": "exec-2",
+        "message": {
+          "id": "exec-2",
+          "author": {
+            "role": "tool",
+            "name": "python",
+            "metadata": {}
+          },
+          "create_time": 1767225723.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "execution_output",
+            "text": "14.98"
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-code-2",
+        "children": [
+          "a-2b"
+        ]
+      },
+      "a-2b": {
+        "id": "a-2b",
+        "message": {
+          "id": "a-2b",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225725.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Keep trip creation free and monetize optional extras:\n\n- Premium route packs curated by local riding clubs\n- Paid group events with ticketing\n- Sponsored rest stops and partner workshops"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "exec-2",
+        "children": [
+          "a-2c"
+        ]
+      },
+      "a-2c": {
+        "id": "a-2c",
+        "message": {
+          "id": "a-2c",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767225726.123456,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "If you want, I can sketch a pricing page next."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-5"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-2b",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "a-2c",
+    "plugin_ids": null,
+    "conversation_id": "6a1f0c2e-1b2c-4d3e-9f10-aa11bb22cc01",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "is_archived": false,
+    "safe_urls": [],
+    "default_model_slug": "gpt-5",
+    "id": "6a1f0c2e-1b2c-4d3e-9f10-aa11bb22cc01"
+  },
+  {
+    "title": "Clinic management platform",
+    "create_time": 1767312000.5,
+    "update_time": 1767312034.5,
+    "mapping": {
+      "root-c": {
+        "id": "root-c",
+        "message": null,
+        "parent": null,
+        "children": [
+          "sys-c"
+        ]
+      },
+      "sys-c": {
+        "id": "sys-c",
+        "message": {
+          "id": "sys-c",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "root-c",
+        "children": [
+          "ci-c"
+        ]
+      },
+      "ci-c": {
+        "id": "ci-c",
+        "message": {
+          "id": "ci-c",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767312000.5,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Custom instructions: answer like a startup advisor."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_user_system_message": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "sys-c",
+        "children": [
+          "u-c1"
+        ]
+      },
+      "u-c1": {
+        "id": "u-c1",
+        "message": {
+          "id": "u-c1",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767312001.5,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "We are designing a clinic management platform for small practices. Which modules matter most at launch?"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "ci-c",
+        "children": [
+          "a-c1"
+        ]
+      },
+      "a-c1": {
+        "id": "a-c1",
+        "message": {
+          "id": "a-c1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767312005.5,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Start with three modules:\n\n1. Appointment scheduling with a shared calendar per doctor\n2. Patient records with visit notes and allergies\n3. Simple billing and invoices\n\nInventory and insurance claims can wait until you have ten paying clinics."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "model_slug": "gpt-4o"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "u-c1",
+        "children": [
+          "u-c2"
+        ]
+      },
+      "u-c2": {
+        "id": "u-c2",
+        "message": {
+          "id": "u-c2",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767312030.5,
+          "update_time": null,
+          "content": {
+            "content_type": "multimodal_text",
+            "parts": [
+              {
+                "content_type": "audio_transcription",
+                "text": "Also, how should reminders work for missed appointments?",
+                "direction": "in"
+              },
+              {
+                "content_type": "audio_asset_pointer",
+                "asset_pointer": "sediment://file_audio01",
+                "size_bytes": 1200,
+                "format": "wav"
+              }
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a-c1",
+        "children": [
+          "a-c2"
+        ]
+      },
+      "a-c2": {
+        "id": "a-c2",
+        "message": {
+          "id": "a-c2",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1767312034.5,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Send an SMS reminder 24 hours before each appointment and a follow-up message offering a new slot when a patient misses one."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {},
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "u-c2",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "a-c2",
+    "conversation_id": "6a1f0c2e-1b2c-4d3e-9f10-aa11bb22cc02",
+    "is_archived": false,
+    "default_model_slug": "gpt-4o",
+    "id": "6a1f0c2e-1b2c-4d3e-9f10-aa11bb22cc02"
+  }
+]

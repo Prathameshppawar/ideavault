@@ -1,0 +1,7 @@
+{
+  "name": "@ideavault/contracts",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Generated OpenAPI contract for the IdeaVault API",
+  "files": ["openapi.json"]
+}

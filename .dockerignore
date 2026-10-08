@@ -1,0 +1,12 @@
+.git
+.github
+**/node_modules
+apps/web
+apps/api/bin
+**/*.test
+.env
+.env.*
+tests/e2e
+docs
+*.md
+!apps/api/**/*.md

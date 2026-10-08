@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS model_lab_results;
+DROP TABLE IF EXISTS model_lab_runs;
+DROP TABLE IF EXISTS embeddings;
+DROP TABLE IF EXISTS jobs;
+DROP TABLE IF EXISTS import_items;
+DROP TABLE IF EXISTS imports;
+DROP TABLE IF EXISTS connector_events;
+DROP TABLE IF EXISTS credentials;
+DROP TABLE IF EXISTS connectors;
+DROP TABLE IF EXISTS usage_events;
+DROP TABLE IF EXISTS model_configs;
+DROP TABLE IF EXISTS tool_calls;

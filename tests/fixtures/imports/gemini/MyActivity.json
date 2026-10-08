@@ -1,0 +1,60 @@
+[
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted What features should a clinic waiting-room display have?",
+    "time": "2026-01-07T10:05:00.000Z",
+    "products": [
+      "Gemini Apps"
+    ],
+    "activityControls": [
+      "Gemini Apps Activity"
+    ],
+    "safeHtmlItem": [
+      {
+        "html": "<p>A good waiting-room display shows:</p><ul><li><strong>Queue position</strong> for each patient</li><li>Estimated wait time</li><li>Health tips between updates</li></ul><h3>Privacy</h3><p>Use ticket numbers instead of names.</p>"
+      }
+    ]
+  },
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted Biker trips: how do I split fuel costs fairly?",
+    "time": "2026-01-07T18:00:00.000Z",
+    "products": [
+      "Gemini Apps"
+    ],
+    "safeHtmlItem": [
+      {
+        "html": "<p>Split by distance ridden:</p><pre><code class=\"language-python\">share = total_fuel * rider_km / group_km\n</code></pre><p>Settle up in the app after the ride.</p>"
+      }
+    ]
+  },
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted Should the reminder SMS include the doctor&#39;s name?",
+    "time": "2026-01-07T10:20:00.000Z",
+    "products": [
+      "Gemini Apps"
+    ],
+    "safeHtmlItem": [
+      {
+        "html": "<p>Yes, if the patient opted in. Keep the message short &amp; avoid diagnoses.</p>"
+      }
+    ]
+  },
+  {
+    "header": "Gemini Apps",
+    "title": "Used an Assistant feature",
+    "time": "2026-01-07T10:30:00.000Z",
+    "products": [
+      "Gemini Apps"
+    ]
+  },
+  {
+    "header": "Gemini Apps",
+    "title": "Prompted Draft a tagline for the trip planner",
+    "time": "2026-01-07T18:10:00.000Z",
+    "products": [
+      "Gemini Apps"
+    ]
+  }
+]

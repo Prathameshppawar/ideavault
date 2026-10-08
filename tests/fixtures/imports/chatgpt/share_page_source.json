@@ -1,0 +1,470 @@
+{
+  "loaderData": {
+    "root": {
+      "dd": {
+        "traceId": "synthetic-trace-0001",
+        "traceTime": {
+          "$date": 1767398450000
+        }
+      },
+      "disablePrefetch": true,
+      "statsigGateEvaluationsPromise": {
+        "$promise": true
+      }
+    },
+    "routes/share.$shareId.($action)": {
+      "sharedConversationId": "6a1f0c2e-5a5e-4d3e-9f10-aa11bb22cc03",
+      "serverResponse": {
+        "type": "data",
+        "data": {
+          "title": "Weekend ride route voting",
+          "create_time": 1767398400.25,
+          "update_time": 1767398444.25,
+          "moderation_results": [],
+          "conversation_id": "6a1f0c2e-5a5e-4d3e-9f10-aa11bb22cc03",
+          "is_archived": false,
+          "safe_urls": [],
+          "default_model_slug": "gpt-5",
+          "mapping": {
+            "client-created-root": {
+              "id": "client-created-root",
+              "children": [
+                "s-sys"
+              ]
+            },
+            "s-sys": {
+              "id": "s-sys",
+              "children": [
+                "s-u1"
+              ]
+            },
+            "s-u1": {
+              "id": "s-u1",
+              "children": [
+                "s-mec"
+              ]
+            },
+            "s-mec": {
+              "id": "s-mec",
+              "children": [
+                "s-th"
+              ]
+            },
+            "s-th": {
+              "id": "s-th",
+              "children": [
+                "s-call"
+              ]
+            },
+            "s-call": {
+              "id": "s-call",
+              "children": [
+                "s-tool"
+              ]
+            },
+            "s-tool": {
+              "id": "s-tool",
+              "children": [
+                "s-pre"
+              ]
+            },
+            "s-pre": {
+              "id": "s-pre",
+              "children": [
+                "s-a1"
+              ]
+            },
+            "s-a1": {
+              "id": "s-a1",
+              "children": [
+                "s-u2"
+              ]
+            },
+            "s-u2": {
+              "id": "s-u2",
+              "children": [
+                "s-recap"
+              ]
+            },
+            "s-recap": {
+              "id": "s-recap",
+              "children": [
+                "s-a2"
+              ]
+            },
+            "s-a2": {
+              "id": "s-a2",
+              "children": []
+            }
+          },
+          "current_node": "s-a2",
+          "is_public": true,
+          "linear_conversation": [
+            {
+              "id": "client-created-root",
+              "children": [
+                "s-sys"
+              ]
+            },
+            {
+              "id": "s-sys",
+              "message": {
+                "id": "s-sys",
+                "author": {
+                  "role": "system",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398400.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    ""
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "is_visually_hidden_from_conversation": true
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "client-created-root",
+              "children": [
+                "s-u1"
+              ]
+            },
+            {
+              "id": "s-u1",
+              "message": {
+                "id": "s-u1",
+                "author": {
+                  "role": "user",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398401.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "We ride every weekend in a group of 15. How can the app help pick a route everyone is happy with?"
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {},
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-sys",
+              "children": [
+                "s-mec"
+              ]
+            },
+            {
+              "id": "s-mec",
+              "message": {
+                "id": "s-mec",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398402.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "model_editable_context",
+                  "model_set_context": "MEMORY SHOULD NOT BE IMPORTED"
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "is_visually_hidden_from_conversation": true
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-u1",
+              "children": [
+                "s-th"
+              ]
+            },
+            {
+              "id": "s-th",
+              "message": {
+                "id": "s-th",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398403.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "thoughts",
+                  "thoughts": [
+                    {
+                      "summary": "Route voting",
+                      "content": "PRIVATE REASONING SHOULD NOT BE IMPORTED"
+                    }
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "model_slug": "gpt-5"
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-mec",
+              "children": [
+                "s-call"
+              ]
+            },
+            {
+              "id": "s-call",
+              "message": {
+                "id": "s-call",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398404.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "{\"search_query\":[{\"q\":\"group ride route voting\"}]}"
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "model_slug": "gpt-5"
+                },
+                "recipient": "web.run",
+                "channel": null
+              },
+              "parent": "s-th",
+              "children": [
+                "s-tool"
+              ]
+            },
+            {
+              "id": "s-tool",
+              "message": {
+                "id": "s-tool",
+                "author": {
+                  "role": "tool",
+                  "name": "web.run",
+                  "metadata": {}
+                },
+                "create_time": 1767398405.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "TOOL OUTPUT SHOULD NOT BE IMPORTED"
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {},
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-call",
+              "children": [
+                "s-pre"
+              ]
+            },
+            {
+              "id": "s-pre",
+              "message": {
+                "id": "s-pre",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398406.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "Looking at a few route voting ideas."
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "model_slug": "gpt-5",
+                  "is_thinking_preamble_message": true
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-tool",
+              "children": [
+                "s-a1"
+              ]
+            },
+            {
+              "id": "s-a1",
+              "message": {
+                "id": "s-a1",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398409.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "Let riders vote on two or three candidate routes before the ride. \ue200cite\ue202turn0search2\ue201\n\nFor each option show the distance, a twisty-road score and the fuel stops, then lock the winning route 24 hours before departure."
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "model_slug": "gpt-5",
+                  "content_references": [
+                    {
+                      "matched_text": "\ue200cite\ue202turn0search2\ue201",
+                      "type": "grouped_webpages",
+                      "alt": "([Moto Club Handbook](https://example.net/route-voting))",
+                      "items": [
+                        {
+                          "title": "Moto Club Handbook",
+                          "url": "https://example.net/route-voting"
+                        }
+                      ]
+                    },
+                    {
+                      "matched_text": " ",
+                      "type": "sources_footnote",
+                      "alt": "",
+                      "sources": []
+                    }
+                  ]
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-pre",
+              "children": [
+                "s-u2"
+              ]
+            },
+            {
+              "id": "s-u2",
+              "message": {
+                "id": "s-u2",
+                "author": {
+                  "role": "user",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398440.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "Nice. What about riders with different skill levels?"
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {},
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-a1",
+              "children": [
+                "s-recap"
+              ]
+            },
+            {
+              "id": "s-recap",
+              "message": {
+                "id": "s-recap",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398441.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "reasoning_recap",
+                  "content": "Thought for 3s"
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "model_slug": "gpt-5"
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-u2",
+              "children": [
+                "s-a2"
+              ]
+            },
+            {
+              "id": "s-a2",
+              "message": {
+                "id": "s-a2",
+                "author": {
+                  "role": "assistant",
+                  "name": null,
+                  "metadata": {}
+                },
+                "create_time": 1767398444.25,
+                "update_time": null,
+                "content": {
+                  "content_type": "text",
+                  "parts": [
+                    "Tag every route with a difficulty level and let the organizer set a minimum. Newer riders can join an easier sub-group that meets the main group at the lunch stop."
+                  ]
+                },
+                "status": "finished_successfully",
+                "end_turn": null,
+                "weight": 1.0,
+                "metadata": {
+                  "model_slug": "gpt-5"
+                },
+                "recipient": "all",
+                "channel": null
+              },
+              "parent": "s-recap",
+              "children": []
+            }
+          ],
+          "continue_conversation_url": "https://chatgpt.com/share/6a1f0c2e-5a5e-4d3e-9f10-aa11bb22cc03/continue"
+        }
+      },
+      "moderationMode": false
+    }
+  },
+  "actionData": null,
+  "errors": null
+}

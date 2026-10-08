@@ -1,0 +1,129 @@
+[
+  {
+    "uuid": "3f2a1b0c-0d1e-4f20-8a31-b2c3d4e5f601",
+    "name": "Clinic scheduling assistant",
+    "summary": "",
+    "created_at": "2026-01-05T09:00:00.000000Z",
+    "updated_at": "2026-01-05T09:12:30.000000Z",
+    "account": {
+      "uuid": "acc-0001"
+    },
+    "chat_messages": [
+      {
+        "uuid": "c-m1",
+        "sender": "human",
+        "created_at": "2026-01-05T09:00:00.000000Z",
+        "updated_at": "2026-01-05T09:00:00.000000Z",
+        "text": "How should a small clinic handle double bookings?",
+        "content": [
+          {
+            "type": "text",
+            "text": "How should a small clinic handle double bookings?",
+            "start_timestamp": "2026-01-05T09:00:00Z",
+            "stop_timestamp": "2026-01-05T09:00:00Z",
+            "citations": []
+          }
+        ],
+        "attachments": [
+          {
+            "file_name": "current_schedule.csv",
+            "file_size": 2048,
+            "file_type": "text/csv",
+            "extracted_content": "doctor,slot\nDr. A,09:00"
+          }
+        ],
+        "files": []
+      },
+      {
+        "uuid": "c-m2",
+        "sender": "assistant",
+        "created_at": "2026-01-05T09:00:20.000000Z",
+        "updated_at": "2026-01-05T09:00:20.000000Z",
+        "text": "",
+        "content": [
+          {
+            "type": "thinking",
+            "thinking": "PRIVATE THINKING SHOULD NOT BE IMPORTED",
+            "summaries": []
+          },
+          {
+            "type": "text",
+            "text": "Prevent them at booking time: lock a slot as soon as a receptionist opens it."
+          },
+          {
+            "type": "tool_use",
+            "name": "web_search",
+            "input": {
+              "query": "clinic double booking"
+            }
+          },
+          {
+            "type": "tool_result",
+            "name": "web_search",
+            "content": [
+              {
+                "type": "text",
+                "text": "TOOL RESULT SHOULD NOT BE IMPORTED"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "Then add a daily conflict report so staff can call affected patients early."
+          }
+        ],
+        "attachments": [],
+        "files": []
+      },
+      {
+        "uuid": "c-m3",
+        "sender": "human",
+        "created_at": "2026-01-05T09:10:00.000000Z",
+        "text": "Could patients rebook themselves from an SMS link?",
+        "attachments": [],
+        "files": []
+      },
+      {
+        "uuid": "c-m4",
+        "sender": "assistant",
+        "created_at": "2026-01-05T09:12:30.000000Z",
+        "text": "Yes. Send a signed link that opens the three nearest free slots for the same doctor.\n\n```\nThis block is not supported on your current device yet.\n```\n\nExpire the link after 48 hours.",
+        "content": [],
+        "attachments": [],
+        "files": []
+      }
+    ]
+  },
+  {
+    "uuid": "3f2a1b0c-0d1e-4f20-8a31-b2c3d4e5f602",
+    "name": "",
+    "created_at": "2026-01-06T18:30:00Z",
+    "updated_at": "2026-01-06T18:31:00Z",
+    "chat_messages": [
+      {
+        "uuid": "c-n1",
+        "sender": "human",
+        "created_at": "2026-01-06T18:30:00Z",
+        "text": "Name ideas for a biker trip planning app?",
+        "content": [
+          {
+            "type": "text",
+            "text": "Name ideas for a biker trip planning app?"
+          }
+        ]
+      },
+      {
+        "uuid": "c-n2",
+        "sender": "assistant",
+        "created_at": "2026-01-06T18:31:00Z",
+        "text": "RideCrew, TwistyTrips and Convoy.",
+        "content": [
+          {
+            "type": "text",
+            "text": "RideCrew, TwistyTrips and Convoy."
+          }
+        ]
+      }
+    ]
+  }
+]

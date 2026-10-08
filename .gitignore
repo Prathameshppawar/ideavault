@@ -1,0 +1,36 @@
+# Env & secrets
+.env
+.env.*
+!.env.example
+*.pem
+.railway-deploy.env
+*.key
+
+# Go
+apps/api/bin/
+apps/api/tmp/
+coverage.out
+*.test
+
+# Node / Next
+node_modules/
+.next/
+.next-e2e/
+out/
+apps/web/.vercel
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Test output
+playwright-report/
+test-results/
+apps/web/tests/e2e/.auth/
+blob-report/
+tests/evaluations/reports/*.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
